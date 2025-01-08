@@ -12,13 +12,13 @@ st.set_page_config(layout="wide")
 st.sidebar.markdown('<style> .css-1d391kg { width: 500px !important;} </style>', unsafe_allow_html=True)
 
 # Cargar el logo en la parte superior del sidebar
-st.sidebar.image("/Users/migueltorresromero/Documents/Páginas/OPRC/Diseño web/logo_web_200x100.png", width=100)  # Ajusta el tamaño con 'width'
+st.sidebar.image("logo.png", width=100)  # Ajusta el tamaño con 'width'
 
 # Título
 st.sidebar.title("Resultados PAES 2024 - Región de Coquimbo | MAPA DE CALOR")
 
 # Cargar los datos desde el CSV
-datos = pd.read_csv("/Users/migueltorresromero/Documents/Páginas/OPRC/Estudios/PAES 2025/datos_con_coordenadas.csv")
+datos = pd.read_csv("datos_con_coordenadas.csv")
 
 # Verifica que las coordenadas sean numéricas
 datos["LATITUD"] = pd.to_numeric(datos["LATITUD"], errors='coerce')
