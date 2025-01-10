@@ -5,20 +5,25 @@ from folium.plugins import HeatMap
 from streamlit_folium import folium_static
 from branca.colormap import linear
 
+import ssl
+import pandas as pd
+from urllib.request import urlopen
+
+# Desactivar la verificación SSL
+ssl._create_default_https_context = ssl._create_unverified_context
+
+# Ahora intenta leer el archivo CSV
+datos = pd.read_csv("https://raw.githubusercontent.com/mtorresromero-cl/PAES-24-regionCoquimbo/refs/heads/main/datos_con_coordenadas.csv")
+
+
 # Configuración de Streamlit para hacer el mapa más grande y ocupar toda la pantalla
 st.set_page_config(layout="wide")
 
 # Sidebar más grande
 st.sidebar.markdown('<style> .css-1d391kg { width: 500px !important;} </style>', unsafe_allow_html=True)
 
-# Cargar el logo en la parte superior del sidebar
-st.sidebar.image("logo.png", width=100)  # Ajusta el tamaño con 'width'
-
 # Título
-st.sidebar.title("Resultados PAES 2024 - Región de Coquimbo | MAPA DE CALOR")
-
-# Cargar los datos desde el CSV
-datos = pd.read_csv("datos_con_coordenadas.csv")
+st.sidebar.title("Resultados PAES 2024 - Región de Coquimbo")
 
 # Verifica que las coordenadas sean numéricas
 datos["LATITUD"] = pd.to_numeric(datos["LATITUD"], errors='coerce')
